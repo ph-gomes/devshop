@@ -128,11 +128,13 @@
                     </div>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right">
-                    <form class="px-4 py-3">
+                    <form class="px-4 py-3" action="/login" method="POST">
                       <div class="form-group">
                         <label>Email address</label>
                         <input
                           type="email"
+                          name="email"
+                          id="email"
                           class="form-control"
                           placeholder="email@example.com"
                         />
@@ -141,6 +143,8 @@
                         <label>Password</label>
                         <input
                           type="password"
+                          name="password"
+                          id="password"
                           class="form-control"
                           placeholder="Password"
                         />

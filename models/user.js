@@ -23,6 +23,14 @@ const initialUser = db => async _ => {
   }
 };
 
+const login = db => async (email, password) => {
+  const user = await db("users")
+    .select("*")
+    .where("email", email);
+  return user;
+};
+
 module.exports = {
-  initialUser
+  initialUser,
+  login
 };
