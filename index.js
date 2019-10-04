@@ -1,3 +1,5 @@
+const user = require("./models/user");
+
 const db = require("knex")({
   client: "mysql2",
   connection: {
@@ -14,8 +16,9 @@ db.on("query", query => {
 });
 
 const app = require("./app")(db);
-
 const port = process.env.PORT || 3000;
+
+user.initialUser(db)();
 
 app.listen(port, err => {
   if (err) console.log(err);

@@ -141,11 +141,10 @@ CREATE TABLE IF NOT EXISTS `DevShop`.`users` (
   `name` VARCHAR(245) NULL,
   `email` VARCHAR(245) NULL,
   `password` VARCHAR(245) NULL,
-  `userscol` VARCHAR(45) NULL,
-  `email_checker` TINYINT NULL,
+  `email_checked` TINYINT NULL,
   `created` DATETIME NULL,
   `updated` DATETIME NULL,
-  `rules` VARCHAR(245) NULL,
+  `roles` VARCHAR(245) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

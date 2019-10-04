@@ -53,7 +53,7 @@ DELETE FROM `email_token`;
 /*!40000 ALTER TABLE `email_token` DISABLE KEYS */;
 /*!40000 ALTER TABLE `email_token` ENABLE KEYS */;
 
--- Copiando dados para a tabela devshop.products: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela devshop.products: ~2 rows (aproximadamente)
 DELETE FROM `products`;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `name`, `description`) VALUES
@@ -75,6 +75,8 @@ DELETE FROM `product_variations`;
 -- Copiando dados para a tabela devshop.users: ~0 rows (aproximadamente)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `email_checked`, `created`, `updated`, `roles`) VALUES
+	(3, 'Admin', 'admin@admin.com.br', '$2a$10$b4/0a7ycus3OB6LbjIISAO7FedBKWoSN10YEQ6bLZzoL1jytzWkc2', 1, '2019-10-04 17:36:20', '2019-10-04 17:36:20', 'admin,financial,customer');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
