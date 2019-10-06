@@ -39,14 +39,6 @@ INSERT INTO `categories` (`id`, `category`, `description`) VALUES
 	(12, 'Outros', 'Outras categorias');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
--- Copiando dados para a tabela devshop.categories_products: ~3 rows (aproximadamente)
-DELETE FROM `categories_products`;
-/*!40000 ALTER TABLE `categories_products` DISABLE KEYS */;
-INSERT INTO `categories_products` (`product_id`, `category_id`) VALUES
-	(3, 2),
-	(1, 3),
-	(2, 3);
-/*!40000 ALTER TABLE `categories_products` ENABLE KEYS */;
 
 -- Copiando dados para a tabela devshop.email_token: ~0 rows (aproximadamente)
 DELETE FROM `email_token`;
@@ -61,6 +53,14 @@ INSERT INTO `products` (`id`, `name`, `description`) VALUES
 	(2, 'Samsung Glaxy Note 10', NULL),
 	(3, 'Geladeira', NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
+-- Copiando dados para a tabela devshop.categories_products: ~3 rows (aproximadamente)
+DELETE FROM `categories_products`;
+/*!40000 ALTER TABLE `categories_products` DISABLE KEYS */;
+INSERT INTO `categories_products` (`product_id`, `category_id`) VALUES
+	(3, 2),
+	(1, 3),
+	(2, 3);
+/*!40000 ALTER TABLE `categories_products` ENABLE KEYS */;
 
 -- Copiando dados para a tabela devshop.product_images: ~0 rows (aproximadamente)
 DELETE FROM `product_images`;

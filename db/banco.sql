@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema DevShop
+-- Schema devshop
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema DevShop
+-- Schema devshop
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `DevShop` DEFAULT CHARACTER SET utf8 ;
-USE `DevShop` ;
+CREATE SCHEMA IF NOT EXISTS `devshop` DEFAULT CHARACTER SET utf8 ;
+USE `devshop` ;
 
 -- -----------------------------------------------------
--- Table `DevShop`.`products`
+-- Table `devshop`.`products`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`products` (
+CREATE TABLE IF NOT EXISTS `devshop`.`products` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(245) NULL,
   `description` TEXT NULL,
@@ -29,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DevShop`.`product_variations`
+-- Table `devshop`.`product_variations`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`product_variations` (
+CREATE TABLE IF NOT EXISTS `devshop`.`product_variations` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `sku` VARCHAR(245) NULL,
   `available` INT NULL,
@@ -42,38 +42,38 @@ CREATE TABLE IF NOT EXISTS `DevShop`.`product_variations` (
   `order` INT NULL,
   `product_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_product_variations_products_idx` (`product_id` ASC) VISIBLE,
+  INDEX `fk_product_variations_products_idx` (`product_id` ASC),
   CONSTRAINT `fk_product_variations_products`
     FOREIGN KEY (`product_id`)
-    REFERENCES `DevShop`.`products` (`id`)
+    REFERENCES `devshop`.`products` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DevShop`.`product_images`
+-- Table `devshop`.`product_images`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`product_images` (
+CREATE TABLE IF NOT EXISTS `devshop`.`product_images` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(245) NULL,
   `url` VARCHAR(245) NULL,
   `order` INT NULL,
   `product_variation_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_product_images_product_variations1_idx` (`product_variation_id` ASC) VISIBLE,
+  INDEX `fk_product_images_product_variations1_idx` (`product_variation_id` ASC),
   CONSTRAINT `fk_product_images_product_variations1`
     FOREIGN KEY (`product_variation_id`)
-    REFERENCES `DevShop`.`product_variations` (`id`)
+    REFERENCES `devshop`.`product_variations` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DevShop`.`categories`
+-- Table `devshop`.`categories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`categories` (
+CREATE TABLE IF NOT EXISTS `devshop`.`categories` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `category` VARCHAR(245) NULL,
   `description` TEXT NULL,
@@ -82,31 +82,31 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DevShop`.`categories_products`
+-- Table `devshop`.`categories_products`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`categories_products` (
-  `categorie_id` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `devshop`.`categories_products` (
+  `category_id` INT NOT NULL,
   `product_id` INT NOT NULL,
-  PRIMARY KEY (`categorie_id`, `product_id`),
-  INDEX `fk_categories_has_products_products1_idx` (`product_id` ASC) VISIBLE,
-  INDEX `fk_categories_has_products_categories1_idx` (`categorie_id` ASC) VISIBLE,
+  PRIMARY KEY (`category_id`, `product_id`),
+  INDEX `fk_categories_has_products_products1_idx` (`product_id` ASC),
+  INDEX `fk_categories_has_products_categories1_idx` (`category_id` ASC),
   CONSTRAINT `fk_categories_has_products_categories1`
-    FOREIGN KEY (`categorie_id`)
-    REFERENCES `DevShop`.`categories` (`id`)
+    FOREIGN KEY (`category_id`)
+    REFERENCES `devshop`.`categories` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_categories_has_products_products1`
     FOREIGN KEY (`product_id`)
-    REFERENCES `DevShop`.`products` (`id`)
+    REFERENCES `devshop`.`products` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DevShop`.`banner_types`
+-- Table `devshop`.`banner_types`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`banner_types` (
+CREATE TABLE IF NOT EXISTS `devshop`.`banner_types` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `banner_type` VARCHAR(245) NULL,
   PRIMARY KEY (`id`))
@@ -114,9 +114,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DevShop`.`banners`
+-- Table `devshop`.`banners`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`banners` (
+CREATE TABLE IF NOT EXISTS `devshop`.`banners` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(245) NULL,
   `banner_type_id` INT NOT NULL,
@@ -124,19 +124,19 @@ CREATE TABLE IF NOT EXISTS `DevShop`.`banners` (
   `order` INT NULL,
   `image_url` VARCHAR(245) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_banners_banner_types1_idx` (`banner_type_id` ASC) VISIBLE,
+  INDEX `fk_banners_banner_types1_idx` (`banner_type_id` ASC),
   CONSTRAINT `fk_banners_banner_types1`
     FOREIGN KEY (`banner_type_id`)
-    REFERENCES `DevShop`.`banner_types` (`id`)
+    REFERENCES `devshop`.`banner_types` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DevShop`.`users`
+-- Table `devshop`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`users` (
+CREATE TABLE IF NOT EXISTS `devshop`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(245) NULL,
   `email` VARCHAR(245) NULL,
@@ -150,9 +150,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `DevShop`.`email_token`
+-- Table `devshop`.`email_token`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DevShop`.`email_token` (
+CREATE TABLE IF NOT EXISTS `devshop`.`email_token` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `token` VARCHAR(245) NULL,
   `valid_until` DATETIME NULL,
@@ -160,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `DevShop`.`email_token` (
   `users_id` INT NOT NULL,
   `used` TINYINT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_email_token_users1_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_email_token_users1_idx` (`users_id` ASC),
   CONSTRAINT `fk_email_token_users1`
     FOREIGN KEY (`users_id`)
-    REFERENCES `DevShop`.`users` (`id`)
+    REFERENCES `devshop`.`users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
