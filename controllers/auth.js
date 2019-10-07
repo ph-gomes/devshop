@@ -10,6 +10,12 @@ const login = db => async (req, res) => {
     res.send(`${err}`);
   }
 };
+
+const logout = (req, res) => {
+  req.session.destroy(() => {});
+  res.redirect("/");
+};
 module.exports = {
-  login
+  login,
+  logout
 };

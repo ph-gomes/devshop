@@ -17,17 +17,20 @@ const init = db => {
   // middleware for every path
   app.use(
     session({
-      secret: "AdminP@ssw0rd!",
+      secret: "MyDevShop",
       name: "sessionId"
     })
   );
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(express.static("public"));
+
   app.use(async (req, res, next) => {
     const categories = await categoryModel.getCategories(db)();
     // Send middleware data forward
+    const { user } = req.session;
     res.locals = {
-      categories
+      categories,
+      user
     };
     next();
   });
