@@ -9,6 +9,7 @@ const productsRouter = require("./products");
 const init = db => {
   router.get("/", staticsController.getIndex);
   router.post("/login", auth.login(db));
+
   router.use("/category", categoriesRouter(db));
   router.use("/product", productsRouter(db));
 

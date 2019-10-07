@@ -27,6 +27,14 @@ const login = db => async (email, password) => {
   const user = await db("users")
     .select("*")
     .where("email", email);
+
+  if (user.length === 0) {
+    throw new Error("Invalid user.");
+  }
+  if (!bcrypt.compareSync(password, user[0].password)) {
+    throw new Error("Invalid password.");
+  }
+
   return user;
 };
 
