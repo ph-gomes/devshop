@@ -13,7 +13,7 @@ const initialUser = db => async _ => {
     const userAdm = {
       name: "Admin",
       email: "admin@admin.com.br",
-      password: generatePassHash("AdminP@ssw0rd!"),
+      password: generatePassHash("!@#$"),
       email_checked: true,
       created: new Date(),
       updated: new Date(),
