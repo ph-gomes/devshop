@@ -22,8 +22,12 @@ const adminGetCategories = db => async (req, res) => {
 const adminCreateCategory = db => async (req, res) => {
   if (req.method === "GET") res.render("admin/categories/create");
   else {
-    await db("categories").insert(req.body);
-    res.send(req.body);
+    try {
+      await categoryModel.createCategory(db)(req.body);
+      res.send(req.body);
+    } catch (err) {
+      res.send(err);
+    }
   }
 };
 module.exports = {
