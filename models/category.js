@@ -1,6 +1,8 @@
 const slug = require("../utils/slug");
 const Joi = require("@hapi/joi");
 
+const validation = require("../utils/validation");
+
 const createSchema = Joi.object({
   category: Joi.string()
     .min(5)
@@ -29,27 +31,10 @@ const getCategoryById = db => async id => {
   return category;
 };
 
-const extractErrors = error => {
-  return error.details.reduce((prev, curr) => {
-    if (prev[curr.path[0]]) {
-      prev[curr.path[0]].push(curr.type);
-    } else prev[curr.path[0]] = [curr.type];
-
-    return prev;
-  }, {});
-};
-
 const createCategory = db => async category => {
-  const { error, value } = createSchema.validate(category, {
-    abortEarly: false,
-    stripUnknown: true
-  });
-  if (error)
-    throw Error({
-      message: "validation",
-      errors: extractErrors(error)
-    });
-  else await db("categories").insert(value);
+  const value = validation.validate(category, createSchema);
+  await db("categories").insert(value);
+  return true;
 };
 
 module.exports = {
