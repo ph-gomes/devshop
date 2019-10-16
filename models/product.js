@@ -2,10 +2,9 @@ const init = db => {
   const getProductsByCategoryId = async id => {
     const products = await db("products")
       .select("*")
-      .where("id", function() {
+      .whereIn("id", function() {
         this.select("product_id")
           .from("categories_products")
-          .whereRaw("product_id = id")
           .where("category_id", id);
       });
 
