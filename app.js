@@ -5,9 +5,10 @@ const path = require("path");
 
 // Exist index in folder
 const routes = require("./routes");
-const categoryModel = require("./models/category");
 
 const init = db => {
+  const categoryModel = require("./models/category")(db);
+
   const app = express();
   // Assign settings name to value
   app.set("view engine", "ejs");
@@ -25,7 +26,7 @@ const init = db => {
   app.use(express.static("public"));
 
   app.use(async (req, res, next) => {
-    const categories = await categoryModel.getCategories(db)();
+    const categories = await categoryModel.getCategories();
     // Send middleware data forward
     const { user } = req.session;
     res.locals = {

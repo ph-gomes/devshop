@@ -1,8 +1,9 @@
 const router = require("express").Router();
-const categoriesController = require("../controllers/categories");
 
 const init = db => {
-  router.get("/:id/:slug", categoriesController.getCategory(db));
+  const categoriesController = require("../controllers/categories")(db);
+
+  router.get("/:id/:slug", categoriesController.getCategory);
   return router;
 };
 

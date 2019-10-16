@@ -1,12 +1,16 @@
-const productModel = require("../models/product");
+const init = db => {
+  const productModel = require("../models/product")(db);
 
-const getProduct = db => async (req, res) => {
-  const product = await productModel.getProductById(db)(req.params.id);
-  res.render("product-detail", {
-    product
-  });
+  const getProduct = async (req, res) => {
+    const product = await productModel.getProductById(req.params.id);
+    res.render("product-detail", {
+      product
+    });
+  };
+
+  return {
+    getProduct
+  };
 };
 
-module.exports = {
-  getProduct
-};
+module.exports = init;

@@ -1,11 +1,18 @@
 const router = require("express").Router();
-const categoriesController = require("../../controllers/categories");
 
 const init = db => {
-  router.get("/", categoriesController.adminGetCategories(db));
+  const categoriesController = require("../../controllers/categories")(db);
 
-  router.get("/new", categoriesController.adminCreateCategory(db));
-  router.post("/new", categoriesController.adminCreateCategory(db));
+  router.get("/", categoriesController.adminGetCategories);
+
+  router.get("/new", categoriesController.adminCreateCategory);
+  router.post("/new", categoriesController.adminCreateCategory);
+
+  router.get("/delete/:id", categoriesController.adminRemoveCategory);
+
+  router.get("/update/:id", categoriesController.adminUpdateCategory);
+  router.post("/update/:id", categoriesController.adminUpdateCategory);
+
   return router;
 };
 
